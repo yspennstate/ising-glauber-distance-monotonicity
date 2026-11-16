@@ -15,7 +15,7 @@
 
 \hypersetup{pdftitle={The pairwise distance of Ising Glauber dynamics is not monotone in the couplings},pdfauthor={Yitzchak Shmalo}}
 
-\title[Distance of Ising Glauber dynamics and couplings]{The pairwise distance of Ising Glauber dynamics is not monotone in the couplings}
+\title[Pairwise distance of Ising Glauber dynamics]{The pairwise distance of Ising Glauber dynamics is not monotone in the couplings}
 \author{Yitzchak Shmalo}
 \address{Einstein Institute of Mathematics, The Hebrew University of Jerusalem, Jerusalem, Israel}
 \email{yitzchak.shmalo@gmail.com}
@@ -25,7 +25,7 @@
 
 \begin{document}
 \begin{abstract}
-For the Glauber dynamics of a ferromagnetic Ising model on a finite graph, Levin and Peres ask whether, for a fixed graph and a fixed time $t$, the largest total variation distance between the laws at time $t$ from two starting configurations increases in each interaction strength. It does not. On the path with four vertices and couplings $(2,x,4)$, raising $x$ from $1$ to $2$ lowers this distance at every time $t$ from $7$ to $699$, and raises it at $t=700$; these inequalities are certified by exact interval arithmetic. The same couplings give a decrease for the lazy chain and in continuous time. The spectral gap behaves as monotonicity of the gap requires: it shrinks when $x$ grows, and the prefactor of the leading term decreases enough to outweigh it until $t=700$. A second example lives on the $5$-cycle, where the spectral gap is known to be monotone.
+For the Glauber dynamics of a ferromagnetic Ising model on a finite graph, Levin and Peres ask whether, for a fixed graph and a fixed time $t$, the pairwise distance (the largest total variation distance between the laws at time $t$ from two starting configurations) increases in each coupling. It does not. On the path with four vertices and couplings $(2,x,4)$, raising $x$ from $1$ to $2$ lowers the pairwise distance at every time $t$ from $7$ to $699$ and raises it at $t=700$; the proof is an interval computation in exact integer arithmetic. The lazy chain behaves in the same way, and numerically so does the continuous-time chain. The spectral gap decreases when $x$ grows, as the first question predicts, and the constant in front of the leading term decreases enough to outweigh this up to $t=699$. The same method gives an example on the $5$-cycle, where the spectral gap is known to be monotone.
 \end{abstract}
 \maketitle
 
@@ -35,33 +35,39 @@ Let $G=(V,E)$ be a finite graph and let $J=(J_{uv})_{uv\in E}$ be positive coupl
 \[
 \mu_J(\sigma)=\frac1{Z_J}\exp\Bigl(\sum_{uv\in E}J_{uv}\,\sigma_u\sigma_v\Bigr),\qquad \sigma\in\{-1,1\}^V,
 \]
-and its Glauber (heat-bath) dynamics picks a vertex $v$ uniformly at random and resamples $\sigma_v$ from its conditional law given the other spins:
+with normalising constant $Z_J$, and its Glauber (heat-bath) dynamics picks a vertex $v$ uniformly at random and resamples $\sigma_v$ from its conditional law given the other spins:
 \begin{equation}\label{eq:cond}
-\mu_J(\sigma_v=+1\mid\sigma_{V\setminus v})=\frac{1}{1+e^{-2h_v(\sigma)}},\qquad h_v(\sigma)=\sum_{u\colon uv\in E}J_{uv}\sigma_u .
+\mu_J(\sigma_v=+1\mid\sigma_{V\setminus\{v\}})=\frac{1}{1+e^{-2h_v(\sigma)}},\qquad h_v(\sigma)=\sum_{u\colon uv\in E}J_{uv}\sigma_u .
 \end{equation}
-Write $P_J$ for the transition matrix and
+Write $P_J$ for the transition matrix and define the pairwise distance
 \[
 \dbar_J(t)=\max_{\sigma,\tau}\bigl\|P_J^t(\sigma,\cdot)-P_J^t(\tau,\cdot)\bigr\|_{\TV}.
 \]
 
-Let $1=\lambda_1(J)>\lambda_2(J)\ge\cdots$ be the eigenvalues of $P_J$, so that $1-\lambda_2(J)$ is the spectral gap. Levin and Peres~\cite[Section~26.1, Question~2]{LP} ask whether the spectral gap is nonincreasing in each coupling $J_{uv}$; Nacu~\cite{Nacu} proved this for the cycle with arbitrary couplings. They then ask for more: whether, for a fixed graph and a fixed $t$, the distance $\dbar_J(t)$ is nondecreasing in each coupling. As they note, a positive answer would settle the spectral-gap question, because $P_J$ has no negative eigenvalue (Section~\ref{sec:mech}) and so $\dbar_J(t)^{1/t}\to\lambda_2(J)$ as $t\to\infty$~\cite[Corollary~12.7 and Lemma~4.10]{LP}. Shirai~\cite{Shirai} showed that on the path with four vertices, with couplings $(2s,x,s)$ and $s$ large, the expectation of a single spin at time $3$, started from all plus, is not monotone in $x$. By spin-flip symmetry this expectation is a lower bound for $\dbar_J(t)$, and a lower bound can decrease while $\dbar_J(t)$ increases, so the question for $\dbar_J(t)$ remains.
+The eigenvalues of $P_J$ are real and nonnegative, because $P_J$ is an average of orthogonal projections of $L^2(\mu_J)$ (Section~\ref{sec:mech}); write them as $1=\lambda_1(J)>\lambda_2(J)\ge\cdots\ge0$, so that $1-\lambda_2(J)$ is the spectral gap. Levin and Peres~\cite[Section~26.1, Question~2]{LP} ask whether the spectral gap is nonincreasing in each coupling $J_{uv}$, which Nacu~\cite{Nacu} proved for the cycle with arbitrary couplings, and whether, for a fixed graph and a fixed $t$, the pairwise distance $\dbar_J(t)$ is nondecreasing in each coupling. The second property implies the first, because $\dbar_J(t)^{1/t}\to\lambda_2(J)$ as $t\to\infty$~\cite[Corollary~12.7 and Lemma~4.10]{LP}. Shirai~\cite{Shirai} showed that the expectation of a single spin at a fixed time, started from all plus, need not be nondecreasing in the couplings. By spin-flip symmetry this expectation is a lower bound for $\dbar_J(t)$, and a lower bound can decrease while $\dbar_J(t)$ increases, so the second question remains open.
 
-On the same path the distance itself decreases. When $\lambda_2(J)$ is a simple eigenvalue,
+On the path with four vertices the pairwise distance itself decreases. Let $\Pi_J$ be the matrix of the orthogonal projection of $L^2(\mu_J)$ onto the eigenspace of $\lambda_2(J)$. Then
+\begin{equation}\label{eq:asym}
+\dbar_J(t)=C_J\,\lambda_2(J)^t\bigl(1+o(1)\bigr)\quad(t\to\infty),\qquad
+C_J=\max_{\sigma,\tau}\,\frac12\sum_{\eta}\bigl|\Pi_J(\sigma,\eta)-\Pi_J(\tau,\eta)\bigr|,
+\end{equation}
+since $P_J^t(\sigma,\cdot)-P_J^t(\tau,\cdot)$ equals $\lambda_2(J)^t\bigl(\Pi_J(\sigma,\cdot)-\Pi_J(\tau,\cdot)\bigr)$ plus a term of order $\lambda_3^t$, with $\lambda_3<\lambda_2(J)$ the next distinct eigenvalue, and $C_J>0$ because the eigenfunctions of $\lambda_2(J)$ are not constant. So an increase of $\lambda_2(J)$ can come with a decrease of $C_J$. For the path with vertices $0,1,2,3$, edges $\{0,1\},\{1,2\},\{2,3\}$ and couplings $J_{01}=2$, $J_{12}=x$, $J_{23}=4$, write $P_x$, $\dbar_x$, $\lambda_2(x)$ and $C_x$. Then
 \[
-\dbar_J(t)=C_J\,\lambda_2(J)^t\bigl(1+o(1)\bigr),\qquad t\to\infty,
+\lambda_2(1)=0.999834342<\lambda_2(2)=0.999837852,\qquad C_1=1.003641>C_2=1.001180,
 \]
-where $C_J$ is the largest total variation distance between two rows of the spectral projector onto the eigenspace of $\lambda_2(J)$. For the couplings $(2,x,4)$, raising $x$ from $1$ to $2$ raises $\lambda_2$ from $0.999834342$ to $0.999837852$ and lowers $C$ from $1.003641$ to $1.001180$. The smaller prefactor wins until $(\lambda_2(2)/\lambda_2(1))^t$ catches up with $C_1/C_2$, near $t=700$.
+and the leading terms $C_1\lambda_2(1)^t$ and $C_2\lambda_2(2)^t$ are equal at $t=\log(C_1/C_2)/\log(\lambda_2(2)/\lambda_2(1))=699.56$.
 
 \begin{theorem}\label{thm:main}
-Let $G$ be the path $0-1-2-3$ with $J_{01}=2$, $J_{12}=x$, $J_{23}=4$, and write $\dbar_x$ for the corresponding distance. Then
+For the path with couplings $(2,x,4)$ and the discrete-time heat-bath dynamics,
 \[
-\dbar_2(t)<\dbar_1(t)\quad\text{for every integer } 7\le t\le 699,\qquad \dbar_2(700)>\dbar_1(700).
+\dbar_2(t)<\dbar_1(t)\quad\text{for every integer } 7\le t\le 699,
 \]
+while $\dbar_2(t)>\dbar_1(t)$ for $2\le t\le6$ and for $t=700$, and $\dbar_1(1)=\dbar_2(1)=1$.
 \end{theorem}
 
-The proof is the interval computation of Section~\ref{sec:cert}. Table~\ref{tab:main} gives the values at both ends of the window and at three times inside it.
+The proof is the interval computation of Section~\ref{sec:cert}.
 
-\begin{table}[tbp]
+\begin{table}[htbp]
 \centering
 \begin{tabular}{rlll}
 \toprule
@@ -75,39 +81,43 @@ $t$ & $\dbar_1(t)$ & $\dbar_2(t)$ & $\dbar_2(t)-\dbar_1(t)$\\
 700 & $0.89374414211522642175$ & $0.89374552169994777552$ & $\phantom{-}1.3795847213538\times10^{-6}$\\
 \bottomrule
 \end{tabular}
-\caption{The path with couplings $(2,x,4)$, discrete-time heat-bath dynamics, at the two ends of the window and at three times inside it. Entries are rounded to the digits shown; the enclosures of Section~\ref{sec:cert} agree with them to more digits than are printed.}\label{tab:main}
+\caption{The path with couplings $(2,x,4)$, discrete-time heat-bath dynamics. Each entry is rounded from an enclosure of width below $2\times10^{-96}$ (Section~\ref{sec:cert}).}\label{tab:main}
 \end{table}
 
-For $2\le t\le6$ the order is also reversed, $\dbar_2(t)>\dbar_1(t)$, and at $t=1$ both distances equal $1$. In double precision the reversed order persists for every $t$ from $700$ to $3000$. At $t=7$, $30$ and $144$ the maximum in $\dbar_x(t)$ is attained at the pair (all plus, all minus).
+Table~\ref{tab:main} lists $t=6,7,30,144,699,700$. At each of these times the maximum in $\dbar_x(t)$ is attained at the pair (all plus, all minus). By \eqref{eq:asym} and $\lambda_2(2)>\lambda_2(1)$, $\dbar_2(t)>\dbar_1(t)$ for all sufficiently large $t$; in double precision this holds for every $t$ from $700$ to $3000$, and only $t=700$ is covered by Theorem~\ref{thm:main}.
 
 \begin{remark}[Lazy chain and continuous time]\label{rem:lazy}
-For the lazy chain $(I+P_x)/2$ the same certificate gives decreases of $1.5859546851\times10^{-4}$ at $t=30$ and $1.3851503307\times10^{-3}$ at $t=144$; numerically the window is $12\le t\le1399$. In continuous time, with each vertex updated at rate one (generator $4(P_x-I)$), the distance at time $t$ drops by $2.9\times10^{-4}$, $8.1\times10^{-4}$, $1.47\times10^{-3}$, $1.69\times10^{-3}$, $1.71\times10^{-3}$ and $1.53\times10^{-3}$ at $t=5$, $10$, $20$, $30$, $40$, $60$ when $x$ goes from $1$ to $2$.
+For the lazy chain $(I+P_x)/2$ the interval computation gives decreases of $1.5859546851\times10^{-4}$ at $t=30$ and $1.3851503307\times10^{-3}$ at $t=144$; in double precision, among $t\le3000$, the decrease holds exactly for $12\le t\le1399$. In continuous time, with each vertex updated at rate one (generator $4(P_x-I)$), the pairwise distance at time $t$ computed numerically drops by $2.9\times10^{-4}$ at $t=5$ and by $1.71\times10^{-3}$ at $t=40$ when $x$ goes from $1$ to $2$, and drops at every $t\in\{5,10,20,30,40,60\}$.
 \end{remark}
 
-\begin{remark}[The cycle]\label{rem:cycle}
-On the $5$-cycle with couplings $(x,2,\tfrac12,4,2)$ around the cycle, raising $x$ from $\tfrac12$ to $1$ lowers $\dbar(3)$ from $0.99997418786773027079$ to $0.99997214160667527597$, computed at $80$ significant digits over all $496$ pairs of states. So the fixed-time monotonicity fails even on the graph where Nacu proved that the spectral gap is monotone.
-\end{remark}
+\begin{proposition}\label{prop:cycle}
+On the $5$-cycle with couplings $(x,2,\tfrac12,4,2)$ around the cycle and the discrete-time heat-bath dynamics, raising $x$ from $\tfrac12$ to $1$ lowers $\dbar(3)$, the pairwise distance at time $3$, from $0.99997418786773027079\ldots$ to $0.99997214160667527597\ldots$.
+\end{proposition}
+
+By Nacu's theorem the spectral gap on this cycle is monotone in each coupling, so Proposition~\ref{prop:cycle} shows that the second question fails on a graph where the first has a positive answer. The proof is the same interval computation (Section~\ref{sec:cert}).
 
 \section{The mechanism}\label{sec:mech}
 
-The heat-bath kernel is an average of the $|V|$ single-site updates, each an orthogonal projection in $L^2(\mu_J)$, so $P_J$ is self-adjoint with spectrum in $[0,1]$. For the path of Theorem~\ref{thm:main} the second eigenvalue is
+The heat-bath kernel is an average of the $|V|$ single-site updates, each an orthogonal projection in $L^2(\mu_J)$, so $P_J$ is self-adjoint with spectrum in $[0,1]$. For the path of Theorem~\ref{thm:main}, to twenty digits,
 \[
-\lambda_2(1)=0.99983434204549494558,\qquad \lambda_2(2)=0.99983785166063618186,
+\lambda_2(1)=0.99983434204549494558,\qquad \lambda_2(2)=0.99983785166063618186.
 \]
-so the spectral gap shrinks as $x$ grows, as a monotone spectral gap requires. Both are simple eigenvalues, and the third largest eigenvalue is $0.97983$ for $x=1$ and $0.92200$ for $x=2$. The asymptotic formula of the introduction therefore applies, with
+Both are simple eigenvalues, and the next eigenvalue is $0.97983$ for $x=1$ and $0.92200$ for $x=2$. The constants in \eqref{eq:asym} are
 \[
 C_1=1.00364104987661629280,\qquad C_2=1.00117954021809281471.
 \]
-Stronger coupling slows the exponential rate but lowers the prefactor. The two leading terms are equal when $t=\log(C_1/C_2)/\log(\lambda_2(2)/\lambda_2(1))=699.56$, and the distances themselves change order between $t=699$ and $t=700$ (Theorem~\ref{thm:main}). In particular the example says nothing against the spectral-gap question.
+Stronger coupling slows the exponential rate and lowers the constant, and the pairwise distances change order between $t=699$ and $t=700$, next to the crossing $699.56$ of the leading terms.
 
-\section{The certificate}\label{sec:cert}
+\section{The interval computation}\label{sec:cert}
 
-All couplings in Theorem~\ref{thm:main} are integers, so every local field $h_v$ is an integer and every entry of $P_x$ is a rational function of $e^{-2}$. We enclose $e^{-2}$ between two consecutive partial sums of its alternating Taylor series (degrees $200$ and $201$) and carry out all further arithmetic on intervals whose endpoints are integers in units of $10^{-100}$, rounding every product and division outward. This gives interval matrices containing $P_1$ and $P_2$, and multiplying by them one factor at a time gives interval matrices containing $P_x^t$ for $t=1,\dots,700$. For each pair of rows, a lower bound for the total variation distance is half the sum, over the $16$ columns, of the distance from $0$ to the interval of the entrywise difference, and an upper bound is half the sum of the largest absolute values in those intervals. The maximum over the $120$ pairs gives an interval for $\dbar_x(t)$ of width below $2\times10^{-96}$. For every $t$ from $2$ to $700$ the intervals for $x=1$ and $x=2$ are disjoint, in the order stated in Theorem~\ref{thm:main} and after it. No floating-point operation enters. The same computation with $(I+P_x)/2$ in place of $P_x$ gives the lazy-chain values in Remark~\ref{rem:lazy}.
+All couplings in Theorem~\ref{thm:main} are integers, so every local field $h_v$ is an integer and every entry of $P_x$ is a rational function of $e^{-2}$. We enclose $e^{-2}$ between two consecutive partial sums of its alternating Taylor series (degrees $200$ and $201$) and carry out all further arithmetic on intervals whose endpoints are integers in units of $10^{-100}$, rounding every product and division outward. This gives interval matrices containing $P_1$ and $P_2$, and multiplying by them one factor at a time gives interval matrices containing $P_x^t$ for $t=1,\dots,700$. For each pair of rows, half the sum over the $16$ columns of the distance from $0$ to the interval of the entrywise difference is a lower bound for the total variation distance. Half the sum of the largest absolute values in those intervals is an upper bound. The maximum over the $120$ pairs gives an interval for $\dbar_x(t)$ of width below $2\times10^{-96}$. For every $t$ from $2$ to $700$ the intervals for $x=1$ and $x=2$ are disjoint, in the order stated in Theorem~\ref{thm:main}. The same computation with $(I+P_x)/2$ in place of $P_x$ gives the lazy-chain values in Remark~\ref{rem:lazy}.
 
-The eigenvalues of Section~\ref{sec:mech}, the windows quoted in double precision and the values in the remarks other than the lazy-chain ones are computed numerically, in multiple precision ($50$ to $120$ significant digits) where digits are shown.
+For Proposition~\ref{prop:cycle} every coupling is a multiple of $\tfrac12$, so every entry of the kernel is a rational function of $e^{-1}$. The same procedure, with $e^{-1}$ enclosed by partial sums of degrees $200$ and $201$, gives intervals for $\dbar(3)$ at $x=\tfrac12$ and $x=1$ over all $496$ pairs of the $32$ states, of width below $10^{-97}$; they are disjoint, and their difference lies within $10^{-97}$ of $-2.0462610549948\times10^{-6}$.
+
+The eigenvalues and constants of Section~\ref{sec:mech}, the crossing time $699.56$ and the continuous-time values of Remark~\ref{rem:lazy} are evaluated in multiple-precision arithmetic ($50$ to $120$ significant digits) and are not enclosed.
 
 \section*{Acknowledgements and funding}
-This work was done by AI agents connected to Math Brain~\cite{MathBrainRepo} and working inside the Brain framework~\cite{BrainFramework}, a shared, persistent memory in which the agents record claims, proofs, failed attempts and methods, retrieve one another's results, coordinate who works on what, and audit each other's work. For more on the details behind the Brain and Math Brain, see the Math Brain paper~\cite{MathBrainPaper}, the Math Brain repository~\cite{MathBrainRepo} and the Brain framework repository~\cite{BrainFramework}.
+This work was done by AI agents connected to Math Brain~\cite{MathBrainRepo} and working inside the Brain framework~\cite{BrainFramework}, a shared, persistent memory in which the agents record claims, proofs, failed attempts and methods, retrieve one another's results, coordinate who works on what, and audit each other's work. For more on the Brain and Math Brain, see~\cite{MathBrainPaper}.
 
 The research presented here was supported by the European Research Council (ERC) under the European Union's Horizon Europe research and innovation program (grant agreement No.~101041711) and by the Simons Foundation as part of the Collaboration on the Mathematical and Scientific Foundations of Deep Learning. It was also supported by Heights Labs, by Convex Nexus Capital, by the Israel Science Foundation (grant number 2258/19), and by the Israel Science Foundation (ISF Grant 4101/25). Computational resources were provided in part by Google Cloud through its education credits program (credit 530550103).
 
@@ -115,13 +125,14 @@ The research presented here was supported by the European Research Council (ERC)
 The author holds equity in Heights Labs and in Convex Nexus Capital and has a management role at Convex Nexus Capital. These entities are included in the funding declaration above.
 
 \section*{Declaration of generative AI and AI-assisted technologies}
-In November 2026 Claude Opus~5.5 (Anthropic), working in Claude Code, found the examples, wrote and ran the numerical scripts, and wrote the paper. GPT-6.1 (OpenAI), working in Codex, recomputed the examples independently and wrote the interval computation of Section~\ref{sec:cert}. Both questions are due to Levin and Peres~\cite{LP}, the cycle case to Nacu~\cite{Nacu}, and the single-spin example on the same path to Shirai~\cite{Shirai}. The author directed the work and is responsible for the content of the paper and for decisions concerning its dissemination.
+In November 2026 Claude Opus~5.5 (Anthropic), working in Claude Code, found the examples, wrote and ran the numerical scripts and the interval computation for the cycle, and wrote the paper. GPT-6.1 (OpenAI), working in Codex, recomputed the examples independently and wrote the interval computation for the path. The two questions are taken from Levin and Peres~\cite{LP}, the cycle case of the first is due to Nacu~\cite{Nacu}, and the single-spin example to Shirai~\cite{Shirai}. The author directed the work and is responsible for the content of the paper and for decisions concerning its dissemination.
 
 \section*{Data availability}
-The Python scripts that produce every number in this paper, including the interval computation, are available at \url{https://github.com/yspennstate/ising-glauber-distance-monotonicity}.
+The Python scripts that produce every number in this paper, including the interval computations, are available at
+\begin{center}\url{https://github.com/yspennstate/ising-glauber-distance-monotonicity}.\end{center}
 
 \begin{thebibliography}{9}
-\bibitem{LP} D.~A.~Levin and Y.~Peres, \emph{Markov Chains and Mixing Times}, second edition, with contributions by E.~L.~Wilmer, American Mathematical Society, Providence, RI, 2017.
+\bibitem{LP} D.~A.~Levin and Y.~Peres, \emph{Markov Chains and Mixing Times}, second edition, with contributions by E.~L.~Wilmer, American Mathematical Society, Providence, RI, 2017, ISBN 978-1-4704-2962-1.
 \bibitem{Nacu} \c{S}.~Nacu, Glauber dynamics on the cycle is monotone, \emph{Probab. Theory Related Fields} \textbf{127} (2003), 177--185, \url{https://doi.org/10.1007/s00440-003-0279-x}.
 \bibitem{Shirai} T.~Shirai, A remark on monotonicity for the Glauber dynamics on finite graphs, \emph{Proc. Japan Acad. Ser. A Math. Sci.} \textbf{86} (2010), 33--37, \url{https://doi.org/10.3792/pjaa.86.33}.
 \bibitem{MathBrainRepo} Y.~Shmalo, \emph{Math Brain: public snapshot, code and tests}, 2026, \url{https://github.com/yspennstate/math-brain-public/tree/8c9a6bd478c4ec4082347151b7ae16db50c917dd}.
