@@ -44,7 +44,11 @@ Write $P_J$ for the transition matrix and define the pairwise distance
 \dbar_J(t)=\max_{\sigma,\tau}\bigl\|P_J^t(\sigma,\cdot)-P_J^t(\tau,\cdot)\bigr\|_{\TV}.
 \]
 
-The eigenvalues of $P_J$ are real and nonnegative, because $P_J$ is an average of orthogonal projections of $L^2(\mu_J)$ (Section~\ref{sec:mech}); write them as $1=\lambda_1(J)>\lambda_2(J)\ge\cdots\ge0$, so that $1-\lambda_2(J)$ is the spectral gap. Nacu~\cite{Nacu} records a conjecture of Peres, that the spectral gap is nonincreasing in each coupling $J_{uv}$; call this property (M1). Nacu proves it for the cycle with arbitrary positive couplings. Levin and Peres~\cite[Section~26.1, Question~2]{LP} record the conjecture and ask, more generally, whether for a fixed graph and a fixed $t$ the pairwise distance $\dbar_J(t)$ is nondecreasing in each coupling; call this property (M2). Property (M2) implies (M1), because $\dbar_J(t)^{1/t}\to\lambda_2(J)$ as $t\to\infty$~\cite[Corollary~12.7 and Lemma~4.10]{LP}. Shirai~\cite{Shirai} showed that the expectation of a single spin at a fixed time, started from all plus, need not be nondecreasing in the couplings. By spin-flip symmetry this expectation is a lower bound for $\dbar_J(t)$, and a lower bound can decrease while $\dbar_J(t)$ increases, so Shirai's example does not decide (M2).
+The eigenvalues of $P_J$ are real and nonnegative, because $P_J$ is an average of orthogonal projections of $L^2(\mu_J)$ (Section~\ref{sec:mech}); write them as $1=\lambda_1(J)>\lambda_2(J)\ge\cdots\ge0$, so that $1-\lambda_2(J)$ is the spectral gap. Nacu~\cite{Nacu} records a conjecture of Peres, that the spectral gap is nonincreasing in each coupling $J_{uv}$; call this property (M1). Nacu proves it for the cycle with arbitrary positive couplings. Levin and Peres~\cite[Section~26.1, Question~2]{LP} record the conjecture and ask, more generally,
+\begin{quote}
+whether for a fixed graph and fixed $t$ the distance $\bar d(t)$ is monotone increasing in the individual interaction strengths $J_{u,v}$.
+\end{quote}
+Here $\bar d(t)$ is the pairwise distance $\dbar_J(t)$ defined above; call this property (M2). Property (M2) implies (M1), because $\dbar_J(t)^{1/t}\to\lambda_2(J)$ as $t\to\infty$~\cite[Corollary~12.7 and Lemma~4.10]{LP}. Shirai~\cite{Shirai} showed that the expectation of a single spin at a fixed time, started from all plus, need not be nondecreasing in the couplings. By spin-flip symmetry this expectation is a lower bound for $\dbar_J(t)$, and a lower bound can decrease while $\dbar_J(t)$ increases, so Shirai's example does not decide (M2).
 
 Property (M2) fails on the path with four vertices. Let $\Pi_J$ be the matrix of the orthogonal projection of $L^2(\mu_J)$ onto the eigenspace of $\lambda_2(J)$. Then
 \begin{equation}\label{eq:asym}
@@ -58,7 +62,7 @@ since $P_J^t(\sigma,\cdot)-P_J^t(\tau,\cdot)$ equals $\lambda_2(J)^t\bigl(\Pi_J(
 so that $C_2\lambda_2(2)^t<C_1\lambda_2(1)^t$ exactly when $t<\log(C_1/C_2)/\log(\lambda_2(2)/\lambda_2(1))=699.56$.
 
 \begin{theorem}\label{thm:main}
-For the path with couplings $(2,x,4)$ and the discrete-time Glauber dynamics,
+For the path $0-1-2-3$ with couplings $J_{01}=2$, $J_{12}=x$, $J_{23}=4$ and the discrete-time Glauber dynamics,
 \[
 \dbar_2(t)<\dbar_1(t)\quad\text{for every integer } 7\le t\le 699,
 \]
@@ -128,7 +132,7 @@ In November 2026 Claude Opus~5.5 (Anthropic), working in Claude Code, found the 
 
 \section*{Data availability}
 The Python scripts for the computations in this paper, with the output of the interval computations, are available at
-\begin{center}\url{https://github.com/yspennstate/ising-glauber-distance-monotonicity}.\end{center}
+\begin{center}\Rl{https://github.com/yspennstate/ising-glauber-distance-monotonicity/tree/019c72153084ce3b6d7261b05e671015025f6d81}.\end{center}
 
 \begin{thebibliography}{9}
 \bibitem{LP} D.~A.~Levin and Y.~Peres, \emph{Markov Chains and Mixing Times}, second edition, with contributions by E.~L.~Wilmer, American Mathematical Society, Providence, RI, 2017, ISBN 978-1-4704-2962-1.
