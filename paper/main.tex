@@ -55,7 +55,7 @@ Property (M2) fails on the path with four vertices. Let $\Pi_J$ be the matrix of
 \dbar_J(t)=C_J\,\lambda_2(J)^t\bigl(1+o(1)\bigr)\quad(t\to\infty),\qquad
 C_J=\max_{\sigma,\tau}\,\frac12\sum_{\eta}\bigl|\Pi_J(\sigma,\eta)-\Pi_J(\tau,\eta)\bigr|,
 \end{equation}
-since $P_J^t(\sigma,\cdot)-P_J^t(\tau,\cdot)$ equals $\lambda_2(J)^t\bigl(\Pi_J(\sigma,\cdot)-\Pi_J(\tau,\cdot)\bigr)$ plus a term of order $\lambda^t$, where $\lambda<\lambda_2(J)$ is the largest eigenvalue of $P_J$ below $\lambda_2(J)$, and $C_J>0$ because the eigenfunctions of $\lambda_2(J)$ are not constant. When $\lambda_2(J)$ increases and $C_J$ decreases, the leading term $C_J\lambda_2(J)^t$ decreases for a range of $t$. For the path with vertices $0,1,2,3$, edges $\{0,1\},\{1,2\},\{2,3\}$ and couplings $J_{01}=2$, $J_{12}=x$, $J_{23}=4$, write $P_x$, $\dbar_x$, $\lambda_2(x)$ and $C_x$. Numerically,
+since $P_J^t(\sigma,\cdot)-P_J^t(\tau,\cdot)$ equals $\lambda_2(J)^t\bigl(\Pi_J(\sigma,\cdot)-\Pi_J(\tau,\cdot)\bigr)$ plus a term of order $\lambda_*(J)^t$, where $\lambda_*(J)<\lambda_2(J)$ is the largest eigenvalue of $P_J$ below $\lambda_2(J)$, and $C_J>0$ because the eigenfunctions of $\lambda_2(J)$ are not constant. When $\lambda_2(J)$ increases and $C_J$ decreases, the leading term $C_J\lambda_2(J)^t$ decreases for a range of $t$. For the path with vertices $0,1,2,3$, edges $\{0,1\},\{1,2\},\{2,3\}$ and couplings $J_{01}=2$, $J_{12}=x$, $J_{23}=4$, write $P_x$, $\dbar_x$, $\lambda_2(x)$ and $C_x$. Numerically,
 \[
 \lambda_2(1)=0.999834342<\lambda_2(2)=0.999837852,\qquad C_1=1.003641>C_2=1.001180,
 \]
@@ -91,7 +91,7 @@ $t$ & $\dbar_1(t)$ & $\dbar_2(t)$ & $\dbar_2(t)-\dbar_1(t)$\\
 At each time in Table~\ref{tab:main} the maximum in $\dbar_x(t)$ is attained, numerically, at the pair (all plus, all minus). Given $\lambda_2(2)>\lambda_2(1)$, which holds numerically, \eqref{eq:asym} gives $\dbar_2(t)>\dbar_1(t)$ for all sufficiently large $t$; in double precision this holds for every $t$ from $700$ to $3000$, and only $t=700$ is covered by Theorem~\ref{thm:main}.
 
 \begin{remark}[Lazy chain and continuous time]\label{rem:lazy}
-For the lazy chain $(I+P_x)/2$ the interval computation gives decreases of $1.5859546851\times10^{-4}$ at $t=30$ and $1.3851503307\times10^{-3}$ at $t=144$; in double precision, among $t\le3000$, the decrease holds exactly for $12\le t\le1399$. In continuous time, with each vertex updated at rate one (generator $4(P_x-I)$), the pairwise distance at time $t$ computed numerically drops by $2.9\times10^{-4}$ at $t=5$ and by $1.71\times10^{-3}$ at $t=40$ when $x$ goes from $1$ to $2$, and drops at every $t\in\{5,10,20,30,40,60\}$.
+For the lazy chain $(I+P_x)/2$ the interval computation shows that the pairwise distance decreases when $x$ goes from $1$ to $2$, by $1.5859546851\times10^{-4}$ at $t=30$ and by $1.3851503307\times10^{-3}$ at $t=144$; in double precision, among $t\le3000$, it decreases for $12\le t\le1399$ and for no other $t$. In continuous time, with each vertex updated at rate one (generator $4(P_x-I)$), the pairwise distance at time $t$ computed numerically drops by $2.9\times10^{-4}$ at $t=5$ and by $1.71\times10^{-3}$ at $t=40$ when $x$ goes from $1$ to $2$, and drops at every $t\in\{5,10,20,30,40,60\}$.
 \end{remark}
 
 \begin{proposition}\label{prop:cycle}
@@ -117,7 +117,7 @@ All couplings in Theorem~\ref{thm:main} are integers, so every local field $h_v$
 
 For Proposition~\ref{prop:cycle} every coupling is a multiple of $\tfrac12$, so every entry of the transition matrix is a rational function of $e^{-1}$. The same computation, with $e^{-1}$ enclosed by partial sums of degrees $200$ and $201$, gives intervals for $\dbar_x(3)$ at $x=\tfrac12$ and $x=1$ over all $496$ pairs of the $32$ configurations, of width below $10^{-98}$; they are disjoint, and the value at $x=1$ minus the value at $x=\tfrac12$ is $-2.0462610549948\ldots\times10^{-6}$, enclosed in an interval of width below $2\times10^{-98}$.
 
-The eigenvalues and constants of Section~\ref{sec:mech}, the time $699.56$ at which the leading terms cross and the pair attaining the maximum in $\dbar_x(t)$ are evaluated in multiple-precision arithmetic ($50$ or $60$ significant digits). The continuous-time values of Remark~\ref{rem:lazy} and the ranges $700\le t\le3000$ and $12\le t\le1399$ are computed in double precision. None of these is enclosed.
+The eigenvalues and constants of Section~\ref{sec:mech}, the time $699.56$ at which the leading terms cross and the pair attaining the maximum in $\dbar_x(t)$ are evaluated in multiple-precision arithmetic (at least $50$ significant digits). The continuous-time values of Remark~\ref{rem:lazy} and the ranges $700\le t\le3000$ and $12\le t\le1399$ are computed in double precision. None of these is enclosed.
 
 \section*{Acknowledgements and funding}
 This work was done by multiple AI agents, Claude and Codex, connected to Math Brain~\cite{MathBrainRepo} and working inside the Brain framework~\cite{BrainFramework}, a shared, persistent memory in which the agents record claims, proofs, failed attempts and methods, retrieve one another's results, coordinate who works on what, and audit each other's work. For more on the Brain and Math Brain, see~\cite{MathBrainPaper}.
