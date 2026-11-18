@@ -25,7 +25,7 @@
 
 \begin{document}
 \begin{abstract}
-For the Glauber dynamics of a ferromagnetic Ising model on a finite graph, Levin and Peres ask whether, for a fixed graph and a fixed time $t$, the pairwise distance (the largest total variation distance between the laws at time $t$ from two starting configurations) is nondecreasing in each coupling. It is not. On the path with four vertices and couplings $(2,x,4)$, raising $x$ from $1$ to $2$ lowers the pairwise distance at every time $t$ from $7$ to $699$ and raises it at $t=700$; the proof is an interval computation in exact integer arithmetic. For the lazy chain the pairwise distance also decreases, at $t=30$ and $t=144$ by the same computation, and numerically it decreases in continuous time at six times between $5$ and $60$. The computed second eigenvalue is larger at $x=2$ than at $x=1$, and the computed constant in front of the leading term is smaller by enough to outweigh this up to $t=699$. The same computation gives an example on the $5$-cycle, where the spectral gap is known to be monotone.
+For the Glauber dynamics of a ferromagnetic Ising model on a finite graph, Levin and Peres ask whether, for a fixed graph and a fixed time $t$, the pairwise distance (the largest total variation distance between the laws at time $t$ from two starting configurations) is nondecreasing in each coupling. It is not. On the path with four vertices and couplings $(2,x,4)$, raising $x$ from $1$ to $2$ lowers the pairwise distance at every time $t$ with $7\le t\le 699$ and raises it at $t=700$; the proof is an interval computation with integer endpoints. For the lazy chain the pairwise distance also decreases, at $t=30$ and $t=144$ by the same computation, and numerically it decreases in continuous time at six times between $5$ and $60$. The computed second eigenvalue is larger at $x=2$ than at $x=1$, and the computed constant in front of the leading term is smaller by enough to outweigh this up to $t=699$. The same computation gives an example on the $5$-cycle, where the spectral gap is known to be monotone.
 \end{abstract}
 \maketitle
 
@@ -58,7 +58,7 @@ since $P_J^t(\sigma,\cdot)-P_J^t(\tau,\cdot)$ equals $\lambda_2(J)^t\bigl(\Pi_J(
 so that $C_2\lambda_2(2)^t<C_1\lambda_2(1)^t$ exactly when $t<\log(C_1/C_2)/\log(\lambda_2(2)/\lambda_2(1))=699.56$.
 
 \begin{theorem}\label{thm:main}
-For the path with couplings $(2,x,4)$ and the discrete-time heat-bath dynamics,
+For the path with couplings $(2,x,4)$ and the discrete-time Glauber dynamics,
 \[
 \dbar_2(t)<\dbar_1(t)\quad\text{for every integer } 7\le t\le 699,
 \]
@@ -81,7 +81,7 @@ $t$ & $\dbar_1(t)$ & $\dbar_2(t)$ & $\dbar_2(t)-\dbar_1(t)$\\
 700 & $0.89374414211522642175$ & $0.89374552169994777552$ & $\phantom{-}1.3795847213538\times10^{-6}$\\
 \bottomrule
 \end{tabular}
-\caption{The path with couplings $(2,x,4)$, discrete-time heat-bath dynamics. Each value of $\dbar_x(t)$ is rounded from an interval of width below $2\times10^{-96}$, and each difference from one of width below $4\times10^{-96}$ (Section~\ref{sec:cert}).}\label{tab:main}
+\caption{The path with couplings $(2,x,4)$, discrete-time Glauber dynamics. Each value of $\dbar_x(t)$ is rounded from an interval of width below $2\times10^{-96}$, and each difference from one of width below $4\times10^{-96}$ (Section~\ref{sec:cert}).}\label{tab:main}
 \end{table}
 
 At each time in Table~\ref{tab:main} the maximum in $\dbar_x(t)$ is attained, numerically, at the pair (all plus, all minus). Given $\lambda_2(2)>\lambda_2(1)$, which holds numerically, \eqref{eq:asym} gives $\dbar_2(t)>\dbar_1(t)$ for all sufficiently large $t$; in double precision this holds for every $t$ from $700$ to $3000$, and only $t=700$ is covered by Theorem~\ref{thm:main}.
@@ -91,7 +91,7 @@ For the lazy chain $(I+P_x)/2$ the interval computation gives decreases of $1.58
 \end{remark}
 
 \begin{proposition}\label{prop:cycle}
-On the $5$-cycle with couplings $(x,2,\tfrac12,4,2)$ around the cycle and the discrete-time heat-bath dynamics, raising $x$ from $\tfrac12$ to $1$ lowers $\dbar(3)$, the pairwise distance at time $3$, from $0.99997418786773027078\ldots$ to $0.99997214160667527597\ldots$.
+On the $5$-cycle with couplings $(x,2,\tfrac12,4,2)$ around the cycle and the discrete-time Glauber dynamics, raising $x$ from $\tfrac12$ to $1$ lowers $\dbar_x(3)$, the pairwise distance at time $3$, from $0.99997418786773027078\ldots$ to $0.99997214160667527597\ldots$.
 \end{proposition}
 
 By Nacu's theorem the spectral gap on this cycle is monotone in each coupling, so Proposition~\ref{prop:cycle} shows that (M2) fails on a graph where (M1) holds. The proof is the same interval computation (Section~\ref{sec:cert}).
@@ -111,12 +111,12 @@ C_1=1.00364104987661629280,\qquad C_2=1.00117954021809281471.
 
 All couplings in Theorem~\ref{thm:main} are integers, so every local field $h_v$ is an integer and every entry of $P_x$ is a rational function of $e^{-2}$. We enclose $e^{-2}$ between two consecutive partial sums of its alternating Taylor series (degrees $200$ and $201$) and carry out all further arithmetic on intervals whose endpoints are integers in units of $10^{-100}$, rounding every product and division outward. This gives interval matrices containing $P_1$ and $P_2$, and multiplying by them one factor at a time gives interval matrices containing $P_x^t$ for $t=1,\ldots,700$. For each pair of rows, half the sum over the $16$ columns of the distance from $0$ to the interval of the entrywise difference is a lower bound for the total variation distance. Half the sum of the largest absolute values in those intervals is an upper bound. The maximum over the $120$ pairs gives an interval for $\dbar_x(t)$ of width below $2\times10^{-96}$. For every $t$ from $2$ to $700$ the intervals for $x=1$ and $x=2$ are disjoint, in the order stated in Theorem~\ref{thm:main}. The same computation with $(I+P_x)/2$ in place of $P_x$ gives the lazy-chain values in Remark~\ref{rem:lazy}.
 
-For Proposition~\ref{prop:cycle} every coupling is a multiple of $\tfrac12$, so every entry of the transition matrix is a rational function of $e^{-1}$. The same computation, with $e^{-1}$ enclosed by partial sums of degrees $200$ and $201$, gives intervals for $\dbar(3)$ at $x=\tfrac12$ and $x=1$ over all $496$ pairs of the $32$ configurations, of width below $10^{-98}$; they are disjoint, and the value at $x=1$ minus the value at $x=\tfrac12$ is $-2.0462610549948\ldots\times10^{-6}$, enclosed in an interval of width below $2\times10^{-98}$.
+For Proposition~\ref{prop:cycle} every coupling is a multiple of $\tfrac12$, so every entry of the transition matrix is a rational function of $e^{-1}$. The same computation, with $e^{-1}$ enclosed by partial sums of degrees $200$ and $201$, gives intervals for $\dbar_x(3)$ at $x=\tfrac12$ and $x=1$ over all $496$ pairs of the $32$ configurations, of width below $10^{-98}$; they are disjoint, and the value at $x=1$ minus the value at $x=\tfrac12$ is $-2.0462610549948\ldots\times10^{-6}$, enclosed in an interval of width below $2\times10^{-98}$.
 
 The eigenvalues and constants of Section~\ref{sec:mech}, the time $699.56$ at which the leading terms cross and the pair attaining the maximum in $\dbar_x(t)$ are evaluated in multiple-precision arithmetic ($50$ or $60$ significant digits). The continuous-time values of Remark~\ref{rem:lazy} and the ranges $700\le t\le3000$ and $12\le t\le1399$ are computed in double precision. None of these is enclosed.
 
 \section*{Acknowledgements and funding}
-This work was done by AI agents connected to Math Brain~\cite{MathBrainRepo} and working inside the Brain framework~\cite{BrainFramework}, a shared, persistent memory in which the agents record claims, proofs, failed attempts and methods, retrieve one another's results, coordinate who works on what, and audit each other's work. For more on the Brain and Math Brain, see~\cite{MathBrainPaper}.
+This work was done by multiple AI agents, Claude and Codex, connected to Math Brain~\cite{MathBrainRepo} and working inside the Brain framework~\cite{BrainFramework}, a shared, persistent memory in which the agents record claims, proofs, failed attempts and methods, retrieve one another's results, coordinate who works on what, and audit each other's work. For more on the Brain and Math Brain, see~\cite{MathBrainPaper}.
 
 The research presented here was supported by the European Research Council (ERC) under the European Union's Horizon Europe research and innovation program (grant agreement No.~101041711) and by the Simons Foundation as part of the Collaboration on the Mathematical and Scientific Foundations of Deep Learning. It was also supported by Heights Labs, by Convex Nexus Capital, by the Israel Science Foundation (grant number 2258/19), and by the Israel Science Foundation (ISF Grant 4101/25).
 
@@ -135,7 +135,7 @@ The Python scripts for the computations in this paper, with the output of the in
 \bibitem{Nacu} \c{S}.~Nacu, Glauber dynamics on the cycle is monotone, \emph{Probab. Theory Related Fields} \textbf{127} (2003), 177--185, \url{https://doi.org/10.1007/s00440-003-0279-x}.
 \bibitem{Shirai} T.~Shirai, A remark on monotonicity for the Glauber dynamics on finite graphs, \emph{Proc. Japan Acad. Ser. A Math. Sci.} \textbf{86} (2010), 33--37, \url{https://doi.org/10.3792/pjaa.86.33}.
 \bibitem{MathBrainRepo} Y.~Shmalo, \emph{Math Brain: public snapshot, code and tests}, 2026, \url{https://github.com/yspennstate/math-brain-public/tree/8c9a6bd478c4ec4082347151b7ae16db50c917dd}.
-\bibitem{MathBrainPaper} Y.~Shmalo, \emph{Math Brain: shared, auditable memory for multi-agent mathematical research}, October 2026, \url{https://doi.org/10.5281/zenodo.24150837}.
+\bibitem{MathBrainPaper} Y.~Shmalo, \emph{Math Brain: shared, auditable memory for multi-agent mathematical research}, October 2026, \url{https://doi.org/10.5281/zenodo.24150837}, also at \url{https://github.com/yspennstate/math-brain-public/tree/main/papers/math-brain-2026-10-24}.
 \bibitem{BrainFramework} Y.~Shmalo, \emph{Brain Framework}, public software repository, 2026, \url{https://github.com/yspennstate/brain-framework-public/tree/5629e644cdd510173ae97e9aa92642dabd22dc57}.
 \end{thebibliography}
 \end{document}
