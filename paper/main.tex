@@ -25,7 +25,7 @@
 
 \begin{document}
 \begin{abstract}
-For the Glauber dynamics of a ferromagnetic Ising model on a finite graph, Levin and Peres ask whether, for a fixed graph and a fixed time $t$, the pairwise distance (the largest total variation distance between the laws at time $t$ from two starting configurations) is nondecreasing in each coupling. It is not. On the path with four vertices and couplings $(2,x,4)$, raising $x$ from $1$ to $2$ lowers the pairwise distance at every time $t$ with $7\le t\le 699$ and raises it at $t=700$; the proof is an interval computation with integer endpoints. For the lazy chain the pairwise distance also decreases, at $t=30$ and $t=144$ by the same computation, and numerically it decreases in continuous time at six times between $5$ and $60$. The computed second eigenvalue is larger at $x=2$ than at $x=1$, and the computed constant in front of the leading term is smaller by enough to outweigh this up to $t=699$. The same computation gives an example on the $5$-cycle, where the spectral gap is known to be monotone.
+Levin and Peres ask whether, for the Glauber dynamics of a ferromagnetic Ising model on a fixed graph, the pairwise distance at a fixed time is nondecreasing in each coupling. It is not. On the path with four vertices and couplings $(2,x,4)$, raising $x$ from $1$ to $2$ lowers the pairwise distance at every time $t$ with $7\le t\le 699$; the proof is an interval computation. A second example is on the $5$-cycle, where the spectral gap is known to be monotone.
 \end{abstract}
 \maketitle
 
@@ -62,7 +62,7 @@ since $P_J^t(\sigma,\cdot)-P_J^t(\tau,\cdot)$ equals $\lambda_2(J)^t\bigl(\Pi_J(
 so that $C_2\lambda_2(2)^t<C_1\lambda_2(1)^t$ exactly when $t<\log(C_1/C_2)/\log(\lambda_2(2)/\lambda_2(1))=699.56$.
 
 \begin{theorem}\label{thm:main}
-For the path $0-1-2-3$ with couplings $J_{01}=2$, $J_{12}=x$, $J_{23}=4$ and the discrete-time Glauber dynamics,
+For the path with vertices $0,1,2,3$, couplings $J_{01}=2$, $J_{12}=x$, $J_{23}=4$, and the discrete-time Glauber dynamics,
 \[
 \dbar_2(t)<\dbar_1(t)\quad\text{for every integer } 7\le t\le 699,
 \]
